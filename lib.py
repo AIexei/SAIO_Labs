@@ -72,6 +72,8 @@ def floyd(matrix):
 def deikstra(graph, start):
     used = set()
 
+    parents = {}
+
     distances = [float('inf')] * graph.n
     distances[start-1] = 0
 
@@ -86,6 +88,8 @@ def deikstra(graph, start):
 
         used.add(position)
         for vertex in graph.relations[position]:
-            distances[vertex] = min(distances[vertex], distances[position]+graph.weights[(position, vertex)])
+            if distances[position] + graph.weights[(position, vertex)] < distances[vertex]:
+                distances[vertex] = distances[position] + graph.weights[(position, vertex)]
+                parents[vertex+1] = position+1
 
-    return distances
+    return (distances, parents)
