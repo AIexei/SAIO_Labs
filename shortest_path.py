@@ -1,5 +1,15 @@
 from lib import Graph, deikstra
 
+
+def print_result(graph, task_number):
+    result = deikstra(graph, 1)
+
+    print('Task ' + str(task_number))
+    print('Distances: ' + str(result[0]))
+    print('Gaps: ' + str(result[1]))
+    print('\n')
+
+
 if __name__ == '__main__':
     # task 1
     g = Graph()
@@ -36,9 +46,7 @@ if __name__ == '__main__':
     g.add_relation(10, 4, 6)
     g.add_relation(10, 6, 3)
 
-    print('Task 1')
-    print(deikstra(g, 1))
-    print('\n')
+    print_result(g, 1)
 
 
     # task 2
@@ -73,9 +81,7 @@ if __name__ == '__main__':
     g.add_relation(9, 4, 1)
     g.add_relation(9, 5, 5)
 
-    print('Task 2')
-    print(deikstra(g, 1))
-    print('\n')
+    print_result(g, 2)
 
 
     # task 3
@@ -108,9 +114,7 @@ if __name__ == '__main__':
     g.add_relation(8, 1, 1)
     g.add_relation(8, 7, 5)
 
-    print('Task 3')
-    print(deikstra(g, 1))
-    print('\n')
+    print_result(g, 3)
 
 
     # task 4
@@ -141,9 +145,7 @@ if __name__ == '__main__':
     g.add_relation(8, 4, 3)
     g.add_relation(8, 7, 5)
 
-    print('Task 4')
-    print(deikstra(g, 1))
-    print('\n')
+    print_result(g, 4)
 
 
     # task 5
@@ -173,9 +175,7 @@ if __name__ == '__main__':
     g.add_relation(7, 3, 1)
     g.add_relation(7, 4, 3)
 
-    print('Task 5')
-    print(deikstra(g, 1))
-    print('\n')
+    print_result(g, 5)
 
 
     # task 6
@@ -207,6 +207,4 @@ if __name__ == '__main__':
 
     g.add_relation(8, 4, 6)
 
-    print('Task 6')
-    print(deikstra(g, 1))
-    print('\n')
+    print_result(g, 6)

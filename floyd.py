@@ -15,9 +15,13 @@ if __name__ == '__main__':
 
     a, r = floyd(g.get_matrix())
 
-    print('Task 1')
+    print('Task 1\n')
+
+    print('Matrix D:')
     print_matrix(a)
+
     print('\n')
+    print('Matrix R:')
     print_matrix(r)
 
 
@@ -60,9 +64,13 @@ if __name__ == '__main__':
 
     a, r = floyd(g.get_matrix())
 
-    print('\nTask 2')
+    print('\nTask 2\n')
+
+    print('Matrix D:')
     print_matrix(a)
+
     print('\n')
+    print('Matrix R:')
     print_matrix(r)
 
 
