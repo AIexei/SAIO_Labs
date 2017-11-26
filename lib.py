@@ -79,12 +79,15 @@ def deikstra(graph, start):
 
     for i in range(graph.n):
         minimum = float('inf')
-        position = 0
+        position = -1
 
         for j in range(graph.n):
             if distances[j] < minimum and j not in used:
                 minimum = distances[j]
                 position = j
+
+        if position == -1:
+            break
 
         used.add(position)
         for vertex in graph.relations[position]:
@@ -93,3 +96,67 @@ def deikstra(graph, start):
                 parents[vertex+1] = position+1
 
     return (distances, parents)
+
+
+def markup_method(graph, start, end):
+    start = start - 1
+    end = end - 1
+
+    b = [0 for _ in range(graph.n)]
+    f = [-1 for _ in range(graph.n)] # array of previous vertexes
+
+    used = set()
+    used.add(start)
+
+    while (end not in used):
+        w = set() # related vertexes
+
+        for i in used:
+            for item in graph.relations[i]:
+                if item not in used:
+                    w.add(item)
+
+        if len(w) == 0:
+            print('Task has no solutions!!!')
+            return None
+
+
+        prev = set()
+        j_star = -1
+
+        for j in w:
+            prev = set()
+
+            for i in range(graph.n):
+                for elem in graph.relations[i]:
+                    if j == elem:
+                        prev.add(i)
+                        break
+
+            if len(prev - used) == 0:
+                j_star = j
+                break
+
+        print('W: ' + str(w))
+        print('Prev: ' + str(prev))
+        print('Used: ' + str(used))
+        print('J star: ' + str(j_star))
+        print('\n\n')
+
+        for i in prev:
+            if b[j_star] < b[i] + graph.weights[(i, j_star)]:
+                b[j_star] = b[i] + graph.weights[(i, j_star)]
+                f[j_star] = i
+
+        used.add(j_star)
+
+    i = end
+    path = []
+
+    while (i != -1):
+        path.append(i+1)
+        i = f[i]
+
+    path.reverse()
+
+    return b[end], path
